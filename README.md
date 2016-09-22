@@ -1,9 +1,11 @@
 # DEM Extracter and Builder
 
 This is a script that, when pointed to a directory of zipped NED/3DEP tiles, will extract just the DEM data and create
-a mosaic dataset with the tiles.
+an ArcGIS mosaic dataset with the tiles.
 
 ## Usage
+
+This script requires arcgis in order to create the mosaic dataset
 
 As currently written, the script can only use the .IMG format zipped tiles, so download those using the national map viewer
 and download manager first (which will bulk download tiles into a folder). Then run the following
