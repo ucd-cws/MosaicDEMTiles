@@ -89,5 +89,4 @@ def make_mosaic_from_tiles(dem_tiles_folder, mosaic_name, geodatabase, coordinat
 
 def zipped_tiles_to_mosaic_dataset(input_folder, output_tile_folder, mosaic_geodatabase, mosaic_name, coordinate_system=nad83_coordinate_system, tile_format=dem_tile_format, make_gdb_if_no_exist=True):
 	find_and_extract_tile_zips(input_folder, output_tile_folder, tile_format)
-	print(coordinate_system)
 	make_mosaic_from_tiles(output_tile_folder, mosaic_name, mosaic_geodatabase, coordinate_system, make_gdb=make_gdb_if_no_exist)
