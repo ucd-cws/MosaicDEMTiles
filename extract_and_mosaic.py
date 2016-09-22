@@ -62,6 +62,7 @@ def find_and_extract_tile_zips(input_folder, output_folder, extension):
 	zips = get_zips_in_folder(input_folder)
 	if len(zips) == 0:
 		logging.error("No tiles found in folder")
+		raise FileNotFoundError("No tiles found in specified folder")  # TODO: Make this a subclassed error
 	elif len(zips) == 1:
 		logging.warning("Only one tile found - mosaic not necessary, but continuing")
 
