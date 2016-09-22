@@ -36,7 +36,7 @@ def extract_tile_from_zip(zip_file_path, output_folder, tile_format):
 	:return:
 	"""
 
-	print("Extracting tiles from zips")
+	logging.debug("Extracting tile from zip")
 	zipped_tile = zipfile.ZipFile(zip_file_path)  # create the zip object
 	compressed_files = zipped_tile.namelist()  # get the list of items inside of it
 
@@ -67,6 +67,7 @@ def find_and_extract_tile_zips(input_folder, output_folder, extension):
 		logging.warning("Only one tile found - mosaic not necessary, but continuing")
 
 	tiles = []
+	print("Extracting tiles from zips")
 	for zipped_file in zips:
 		tiles += extract_tile_from_zip(zipped_file, output_folder, extension)
 
