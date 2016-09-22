@@ -21,8 +21,6 @@ def get_zips_in_folder(folder_path):
 	all_files = os.listdir(folder_path)
 	zips = []  # set up the blank zips list
 
-	print(all_files)
-
 	for l_file in all_files:  # look through all of the files
 		if l_file.lower().endswith(".zip") and zipfile.is_zipfile(os.path.join(folder_path, l_file)):
 			# confirm it's a zipfile - first by extension, then if the extension matches by zipfile's more robust method
