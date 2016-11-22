@@ -74,9 +74,9 @@ def find_and_extract_tile_zips(input_folder, output_folder, extension):
 	return tiles
 
 
-def make_mosaic_from_tiles(dem_tiles_folder, mosaic_name, geodatabase, coordinate_system, make_gdb=True):
+def make_mosaic_from_tiles(dem_tiles_folder, mosaic_name, geodatabase, coordinate_system, make_gdb=True, export_to_raster=False):
 
-	if not arcpy.Exists(geodatabase):
+	if not arcpy.Exists(geodatabase) and make_gdb is True:
 		folder, name = os.path.split(geodatabase)
 		arcpy.CreateFileGDB_management(folder, name)
 
@@ -87,7 +87,10 @@ def make_mosaic_from_tiles(dem_tiles_folder, mosaic_name, geodatabase, coordinat
 	print("Adding Tiles to Dataset")
 	arcpy.AddRastersToMosaicDataset_management(mosaic_dataset, "Raster Dataset", dem_tiles_folder, update_overviews="UPDATE_OVERVIEWS")
 
+	if export_to_raster:
+		arcpy.MosaicToNewRaster_management(mosaic_dataset, geodatabase, "{}_export".format(mosaic_name), pixel_type="32_BIT_FLOAT", number_of_bands=1)
 
-def zipped_tiles_to_mosaic_dataset(input_folder, output_tile_folder, mosaic_geodatabase, mosaic_name, coordinate_system=nad83_coordinate_system, tile_format=dem_tile_format, make_gdb_if_no_exist=True):
+
+def zipped_tiles_to_mosaic_dataset(input_folder, output_tile_folder, mosaic_geodatabase, mosaic_name, coordinate_system=nad83_coordinate_system, tile_format=dem_tile_format, make_gdb_if_no_exist=True, export_to_raster=False):
 	find_and_extract_tile_zips(input_folder, output_tile_folder, tile_format)
-	make_mosaic_from_tiles(output_tile_folder, mosaic_name, mosaic_geodatabase, coordinate_system, make_gdb=make_gdb_if_no_exist)
+	make_mosaic_from_tiles(output_tile_folder, mosaic_name, mosaic_geodatabase, coordinate_system, make_gdb=make_gdb_if_no_exist, export_to_raster=export_to_raster)

@@ -12,11 +12,13 @@ and download manager first (which will bulk download tiles into a folder). Then 
 
 ```python
 import extract_and_mosaic
-extract_and_mosaic.zipped_tiles_to_mosaic_dataset({folder with zipped tiles}, {folder to place extracted tiles}, {path to geodatabase for mosaic}, {mosaic dataset name})
+extract_and_mosaic.zipped_tiles_to_mosaic_dataset({folder with zipped tiles}, {folder to place extracted tiles}, {path to geodatabase for mosaic}, {mosaic dataset name}, export_to_raster=False)
 ```
 
 The geodatabase does not need to exist - it will be created if it doesn't. The folder with zipped tiles can have other
 files in it - they will be ignored if they aren't zips and don't contain a .IMG raster inside.
+
+If export_to_raster is True, then it will export a new, single raster, in the same geodatabase, with the same name as the mosaic, but appended with "_export"
 
 ## Long-Term vision
 This started out of a desire to provide a polygon area and specify a DEM resolution in order to get a stitched DEM back.
